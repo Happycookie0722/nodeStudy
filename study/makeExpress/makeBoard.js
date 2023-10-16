@@ -9,7 +9,7 @@ let posts = [];
 // app.use(express.json())을 실행하지 않으면 req.body 값이 undefined 로 반환 됨
 app.use(express.json());
 
-// POST 요청 시 컨텐츠 타입이 application/x-www-form-urlencoded인 경우 파싱.
+// POST 요청 시 컨텐츠 타입이 application/x-www-form-urlencoded인 경우 파싱
 app.use(express.urlencoded({extended : true}));
 
 // get 요청이 오는 경우 콜백 함수 실행
@@ -38,14 +38,27 @@ app.post("/posts", (req, res) => {
 })
 
 app.delete("/posts/:id", (req, res) => {
+
+  // id 변수에 요청(req)의 path에 할당된 변수 id를 할당
+  // :id 부분에 데이터가 들어오면 문자열 타입으로 params.id 에 할당
   const id = req.params.id;
+
+  // 글 삭제 로직
+  // 게시판 글 중에 id 이외의 값만 뽑아서 filteredPosts에 다시 할당
+  // +id 는 문자열인 id 를 숫자로 다시 변환한다는 의미
   const filteredPosts = posts.filter((post) => post.id !== +id);
+
+  // 글 삭제 확인 로직.
   const isLengthChanged = posts.length !== filteredPosts.length;
   posts = filteredPosts;
+
+  // posts 에서 게시글이 삭제 된 경우 OK를 응답하고 return.
   if(isLengthChanged) {
     res.json("OK");
     return;
   }
+
+  // 게시글에 변경이 없는 경우 "NOT CHANGED" 를 반환
   res.json("NOT CHANGED");
 });
 

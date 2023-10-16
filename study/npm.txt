@@ -1,0 +1,52 @@
+NPM(Node Package Manager)
+자바스크립트용 패키지 매니저. 
+유저가 만든 패키지를 등록하는 저장소를 의미하기도 하고 
+CLI(Comane Line Interface) 를 의미하기도 한다. Node.js 설치할 때 함께 설치됨.
+
+패키지
+Node.js 에서 패키지는 package.json으로 정의한 파일 또는 디렉토리를 의미한다.
+패키지에는 package.json이 꼭 포함된다. 다음 항목들 모두가 패키지가 될 수 있다.
+1. package.json 이 있는 디렉토리
+2. 1번을 압축한 파일
+3. 2번을 내려받을 수 있는 URL 주소
+4. 3번 정보를 가지고npm 저장소에 <패키지명>@<버전>으로 등록된 것.
+5. 4번을 가리키는 <패키지명>@<태그>
+6. <패키지명>만 있는 경우는 5번에서 latest 태그를 가르킨다.
+7. 1번을 결과로 주는 Git URL
+
+* package.json 으로 정의한 코드 뭉치가 패키지
+
+모듈
+[node.modules] 디렉토리 아래에 있는 파일 또는 디렉토리를 말한다.
+[node.modules]에 있는 파일이나 디렉토리는 require() 함수로 읽을 수 있다.
+npm install 명령으로 설치한 패키지들이 저장된다. 모든 패키지는 모듈이다.
+
+npm init : 패키지를 만들기 위한 명령어 -y 붙이면 기본적으로 필수사항만 들어감.
+필수사항에는 name, version이 있다.
+
+-- 주로 쓰는 npm 명령어
+name : 패키지명
+version : 패키지의 버전. 버전은 node-semver로 파싱이 가능해야 한다.
+description : 패키지 설명. npm search로 검색 시 나오는 설명문
+scripts : npm start, test 등의 npm 으로 실행하는 스크립트 정보를 설정.
+유저가 커스텀하게 설정한 스크립트는 npm run <스크립트명> 으로 실행 가능
+
+패키지 설치방법
+npm install, i, add 셋 중 하나 사용
+npm install <패키지명>@<태그 | 버전 | 버전 범위>
+
+* 깃허브 URL을 설정해 설치하는 방법도 있다.
+npm install <git 저장소 주소>
+
+패키지 업데이트
+npm update, up, upgrade 셋 중 하나 사용
+패키지명을 붙이지 않을 경우 package.json 에 정의된 의존성 패키지 전부 업데이트
+npm update [-g] [패키지명1, 패키지명2... 패키지명N]
+
+설치한 패키지 확인
+npm ls, la, ll, list 넷 중 하나 사용용 
+npm ls [@스코프/] 패키지명
+
+설치한 패키지 삭제
+npm uninstall, remove, rm, r, un, unlink 중 하나 사용
+npm uninstall [@스코프/] 패키지명[@버전] [-S|--save|-D|--save-dev|-O|--save-optional]
