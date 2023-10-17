@@ -1,0 +1,4 @@
+prettier
+자바스크립트를 자동으로 포매팅하는 CLI 
+
+prittier 프로젝트의 package.json에 있는 bin 설정이 npx 명령어에서 실행하는 파일.

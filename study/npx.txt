@@ -1,0 +1,15 @@
+NPX(Node Package eXecute)
+Node 패키지 실행자(Node Package Runner) 이라고도 한다.
+
+Node 패키지 개발할 때 프로젝트 실행, 관리, 테스트 등에 명령형 패키지를 사용하는 테스트 도구
+대표적으로 prettier, eslint, jest 같은 테스트 도구들이 있다.
+이러한 패키지를 실행하려면 node_module/.bin/패키지명 경로로 명령어를 실행해야 한다.
+npx를 사용하면 npx <패키지명>처럼 경로를 생략해 실행할 수 있다.
+
+prettier 는 자바스크립트를 자동으로 포매팅하는 CLI 명령어.
+작성한 로직들을 가독성 좋게 포매팅해준다.
+npm i prettier 로 설치 가능
+
+prittier 프로젝트의 package.json에 있는 bin 이 npx 명령어에서 실행하는 파일.
+package.json 내에 bin 에 "./bin/prettier.cjs" 설정되어 있으므로
+npx prittier <수정할 프로젝트파일> 입력 시 prettier.cjs 파일 자동 실행된다.
